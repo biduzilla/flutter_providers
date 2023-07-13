@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:providers/models/client.dart';
-import 'package:providers/models/client_type.dart';
 import 'package:providers/models/clients.dart';
 
 import 'pages/client_types_page.dart';
@@ -9,13 +7,7 @@ import 'pages/clientes_page.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
-    create: (context) => Clients(clients: [
-      Client(
-          name: "Toddy",
-          email: "Toddy@Toddy",
-          type: ClientType(name: "Premium", icon: Icons.add))
-    ]),
-    child: const MyApp(),
+    create: (context) => Clients(clients: []),
   ));
   // runApp(const MyApp());
 }

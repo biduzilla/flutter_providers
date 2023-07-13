@@ -135,10 +135,10 @@ class _ClientsPageState extends State<ClientsPage> {
                     child: const Text("Salvar"),
                     onPressed: () async {
                       setState(() {
-                        list.clients.add(Client(
-                            name: nomeInput.text,
-                            email: emailInput.text,
-                            type: dropdownValue));
+                        // clients.add(Client(
+                        //     name: nomeInput.text,
+                        //     email: emailInput.text,
+                        //     type: dropdownValue));
                       });
                       Navigator.pop(context);
                     });

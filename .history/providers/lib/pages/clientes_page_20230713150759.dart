@@ -30,7 +30,7 @@ class _ClientsPageState extends State<ClientsPage> {
       ),
       drawer: const HamburgerMenu(),
       body: Consumer<Clients>(
-        builder: (BuildContext context, Clients list, Widget? widget) {
+        builder: (BuildContext context, Client list, Widget? widget) {
           return ListView.builder(
             itemCount: list.clients.length,
             itemBuilder: (context, index) {
@@ -40,15 +40,15 @@ class _ClientsPageState extends State<ClientsPage> {
                   color: Colors.red,
                 ),
                 child: ListTile(
-                  leading: Icon(list.clients[index].type.icon),
+                  leading: Icon(clients[index].type.icon),
                   title: Text(
-                    '${list.clients[index].name}(${list.clients[index].type.name})',
+                    '${clients[index].name}(${clients[index].type.name})',
                   ),
                   iconColor: Colors.indigo,
                 ),
                 onDismissed: (direction) {
                   setState(() {
-                    list.clients.removeAt(index);
+                    clients.removeAt(index);
                   });
                 },
               );
@@ -129,20 +129,17 @@ class _ClientsPageState extends State<ClientsPage> {
               ),
             ),
             actions: [
-              Consumer<Clients>(builder:
-                  (BuildContext context, Clients list, Widget? widget) {
-                return TextButton(
-                    child: const Text("Salvar"),
-                    onPressed: () async {
-                      setState(() {
-                        list.clients.add(Client(
-                            name: nomeInput.text,
-                            email: emailInput.text,
-                            type: dropdownValue));
-                      });
-                      Navigator.pop(context);
+              TextButton(
+                  child: const Text("Salvar"),
+                  onPressed: () async {
+                    setState(() {
+                      clients.add(Client(
+                          name: nomeInput.text,
+                          email: emailInput.text,
+                          type: dropdownValue));
                     });
-              }),
+                    Navigator.pop(context);
+                  }),
               TextButton(
                   child: const Text("Cancelar"),
                   onPressed: () {

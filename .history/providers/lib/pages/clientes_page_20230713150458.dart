@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import '../components/hamburguer_menu.dart';
 import '../models/client.dart';
 import '../models/client_type.dart';
-import '../models/clients.dart';
 
 class ClientsPage extends StatefulWidget {
   const ClientsPage({super.key, required this.title});
@@ -29,32 +28,31 @@ class _ClientsPageState extends State<ClientsPage> {
         title: Text(widget.title),
       ),
       drawer: const HamburgerMenu(),
-      body: Consumer<Clients>(
-        builder: (BuildContext context, Clients list, Widget? widget) {
-          return ListView.builder(
-            itemCount: list.clients.length,
-            itemBuilder: (context, index) {
-              return Dismissible(
-                key: UniqueKey(),
-                background: Container(
-                  color: Colors.red,
+      body: Consumer<Client>(
+        builder: (BuildContext context) {},
+        child: ListView.builder(
+          itemCount: clients.length,
+          itemBuilder: (context, index) {
+            return Dismissible(
+              key: UniqueKey(),
+              background: Container(
+                color: Colors.red,
+              ),
+              child: ListTile(
+                leading: Icon(clients[index].type.icon),
+                title: Text(
+                  '${clients[index].name}(${clients[index].type.name})',
                 ),
-                child: ListTile(
-                  leading: Icon(list.clients[index].type.icon),
-                  title: Text(
-                    '${list.clients[index].name}(${list.clients[index].type.name})',
-                  ),
-                  iconColor: Colors.indigo,
-                ),
-                onDismissed: (direction) {
-                  setState(() {
-                    list.clients.removeAt(index);
-                  });
-                },
-              );
-            },
-          );
-        },
+                iconColor: Colors.indigo,
+              ),
+              onDismissed: (direction) {
+                setState(() {
+                  clients.removeAt(index);
+                });
+              },
+            );
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.indigo,
@@ -129,20 +127,17 @@ class _ClientsPageState extends State<ClientsPage> {
               ),
             ),
             actions: [
-              Consumer<Clients>(builder:
-                  (BuildContext context, Clients list, Widget? widget) {
-                return TextButton(
-                    child: const Text("Salvar"),
-                    onPressed: () async {
-                      setState(() {
-                        list.clients.add(Client(
-                            name: nomeInput.text,
-                            email: emailInput.text,
-                            type: dropdownValue));
-                      });
-                      Navigator.pop(context);
+              TextButton(
+                  child: const Text("Salvar"),
+                  onPressed: () async {
+                    setState(() {
+                      clients.add(Client(
+                          name: nomeInput.text,
+                          email: emailInput.text,
+                          type: dropdownValue));
                     });
-              }),
+                    Navigator.pop(context);
+                  }),
               TextButton(
                   child: const Text("Cancelar"),
                   onPressed: () {
