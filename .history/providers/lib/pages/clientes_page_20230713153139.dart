@@ -16,6 +16,13 @@ class ClientsPage extends StatefulWidget {
 }
 
 class _ClientsPageState extends State<ClientsPage> {
+  // List<ClientType> types = [
+  //   ClientType(name: 'Platinum', icon: Icons.credit_card),
+  //   ClientType(name: 'Golden', icon: Icons.card_membership),
+  //   ClientType(name: 'Titanium', icon: Icons.credit_score),
+  //   ClientType(name: 'Diamond', icon: Icons.diamond),
+  // ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

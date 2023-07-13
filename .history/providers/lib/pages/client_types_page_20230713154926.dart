@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../components/hamburguer_menu.dart';
 import '../components/icon_picker.dart';
 import '../models/client_type.dart';
-import '../models/types.dart';
 
 class ClientsTypePage extends StatefulWidget {
   const ClientsTypePage({super.key, required this.title});
@@ -23,23 +21,21 @@ class _ClientsTypePageState extends State<ClientsTypePage> {
         title: Text(widget.title),
       ),
       drawer: const HamburgerMenu(),
-      body: Consumer<Types>(
-        builder: (BuildContext context, Types list, Widget? widget) {
-          return ListView.builder(
-            itemCount: list.types.length,
-            itemBuilder: (context, index) {
-              return Dismissible(
-                key: UniqueKey(),
-                background: Container(color: Colors.red),
-                child: ListTile(
-                  leading: Icon(list.types[index].icon),
-                  title: Text(list.types[index].name),
-                  iconColor: Colors.deepOrange,
-                ),
-                onDismissed: (direction) {
-                  list.remove(index);
-                },
-              );
+      body: ListView.builder(
+        itemCount: types.length,
+        itemBuilder: (context, index) {
+          return Dismissible(
+            key: UniqueKey(),
+            background: Container(color: Colors.red),
+            child: ListTile(
+              leading: Icon(types[index].icon),
+              title: Text(types[index].name),
+              iconColor: Colors.deepOrange,
+            ),
+            onDismissed: (direction) {
+              setState(() {
+                types.removeAt(index);
+              });
             },
           );
         },
@@ -110,10 +106,10 @@ class _ClientsTypePageState extends State<ClientsTypePage> {
                   child: const Text("Salvar"),
                   onPressed: () {
                     selectedIcon ??= Icons.credit_score;
-                    Provider.of<Types>(context, listen: false).add(
+                    types.add(
                         ClientType(name: nomeInput.text, icon: selectedIcon));
                     selectedIcon = null;
-
+                    setState(() {});
                     Navigator.pop(context);
                   }),
               TextButton(

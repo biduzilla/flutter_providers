@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:providers/models/client_type.dart';
 
 import 'client.dart';
 
-class Clients extends ChangeNotifier {
-  List<Client> clients;
+class Types extends ChangeNotifier {
+  List<ClientType> types;
 
-  Clients({required this.clients});
+  Types({required this.types});
 
-  void add(Client client) {
+  void add(ClientType type) {
     clients.add(client);
     notifyListeners();
   }

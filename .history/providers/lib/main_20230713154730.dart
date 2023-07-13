@@ -18,15 +18,9 @@ void main() {
                     email: "Toddy@Toddy",
                     type: ClientType(name: "Premium", icon: Icons.add))
               ])),
-      ChangeNotifierProvider(
-          create: (context) => Types(types: [
-                ClientType(name: 'Platinum', icon: Icons.credit_card),
-                ClientType(name: 'Golden', icon: Icons.card_membership),
-                ClientType(name: 'Titanium', icon: Icons.credit_score),
-                ClientType(name: 'Diamond', icon: Icons.diamond),
-              ]))
+      ChangeNotifierProvider(create: (context) => Types(types: []))
     ],
-    child: const MyApp(),
+    child: MyApp(),
   ));
 
   // runApp(const MyApp());

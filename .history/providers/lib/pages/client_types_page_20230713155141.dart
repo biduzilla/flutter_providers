@@ -37,7 +37,9 @@ class _ClientsTypePageState extends State<ClientsTypePage> {
                   iconColor: Colors.deepOrange,
                 ),
                 onDismissed: (direction) {
-                  list.remove(index);
+                  setState(() {
+                    list.types.removeAt(index);
+                  });
                 },
               );
             },
@@ -110,10 +112,10 @@ class _ClientsTypePageState extends State<ClientsTypePage> {
                   child: const Text("Salvar"),
                   onPressed: () {
                     selectedIcon ??= Icons.credit_score;
-                    Provider.of<Types>(context, listen: false).add(
+                    types.add(
                         ClientType(name: nomeInput.text, icon: selectedIcon));
                     selectedIcon = null;
-
+                    setState(() {});
                     Navigator.pop(context);
                   }),
               TextButton(

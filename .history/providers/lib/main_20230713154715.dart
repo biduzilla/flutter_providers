@@ -9,25 +9,16 @@ import 'pages/client_types_page.dart';
 import 'pages/clientes_page.dart';
 
 void main() {
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(
-          create: (context) => Clients(clients: [
-                Client(
-                    name: "Toddy",
-                    email: "Toddy@Toddy",
-                    type: ClientType(name: "Premium", icon: Icons.add))
-              ])),
-      ChangeNotifierProvider(
-          create: (context) => Types(types: [
-                ClientType(name: 'Platinum', icon: Icons.credit_card),
-                ClientType(name: 'Golden', icon: Icons.card_membership),
-                ClientType(name: 'Titanium', icon: Icons.credit_score),
-                ClientType(name: 'Diamond', icon: Icons.diamond),
-              ]))
-    ],
-    child: const MyApp(),
-  ));
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+        create: (context) => Clients(clients: [
+              Client(
+                  name: "Toddy",
+                  email: "Toddy@Toddy",
+                  type: ClientType(name: "Premium", icon: Icons.add))
+            ])),
+    ChangeNotifierProvider(create: (context) => Types(types: []))
+  ]));
 
   // runApp(const MyApp());
 }

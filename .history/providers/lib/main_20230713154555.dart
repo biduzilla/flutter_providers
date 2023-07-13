@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:providers/models/client.dart';
 import 'package:providers/models/client_type.dart';
 import 'package:providers/models/clients.dart';
-import 'package:providers/models/types.dart';
 
 import 'pages/client_types_page.dart';
 import 'pages/clientes_page.dart';
@@ -18,15 +17,7 @@ void main() {
                     email: "Toddy@Toddy",
                     type: ClientType(name: "Premium", icon: Icons.add))
               ])),
-      ChangeNotifierProvider(
-          create: (context) => Types(types: [
-                ClientType(name: 'Platinum', icon: Icons.credit_card),
-                ClientType(name: 'Golden', icon: Icons.card_membership),
-                ClientType(name: 'Titanium', icon: Icons.credit_score),
-                ClientType(name: 'Diamond', icon: Icons.diamond),
-              ]))
     ],
-    child: const MyApp(),
   ));
 
   // runApp(const MyApp());
